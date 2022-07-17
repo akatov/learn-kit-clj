@@ -12,7 +12,8 @@
 
     ;; Routes
     [akatov.guestbook.web.routes.api]
-    )
+    
+    [akatov.guestbook.web.routes.ui])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
