@@ -11,7 +11,8 @@
 
     ;; Routes
     [akatov.guestbook.web.routes.api]
-    )
+    
+    [kit.edge.utils.nrepl])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
