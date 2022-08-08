@@ -11,4 +11,7 @@ log/
 .idea/
 
 # clj-kondo
-.clj-kondo/.cache/
+.clj-kondo
+
+# VS Code
+.vscode
