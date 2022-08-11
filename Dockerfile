@@ -17,11 +17,8 @@ FROM azul/zulu-openjdk-alpine:18
 WORKDIR /
 
 RUN apk add openrc
-RUN apk add rsyslog
 RUN apk add openssh
 
-RUN sed -ri 's/^.*SyslogFacility.*$/SyslogFacility AUTH/'               /etc/ssh/sshd_config
-RUN sed -ri 's/^.*LogLevel.*$/LogLevel INFO/'                           /etc/ssh/sshd_config
 RUN sed -ri 's/^.*AllowTcpForwarding.*$/AllowTcpForwarding yes/'        /etc/ssh/sshd_config
 RUN sed -ri 's/^.*PasswordAuthentication.*$/PasswordAuthentication no/' /etc/ssh/sshd_config
 RUN sed -ri 's/^.*PubkeyAuthentication.*$/PubkeyAuthentication yes/'    /etc/ssh/sshd_config
