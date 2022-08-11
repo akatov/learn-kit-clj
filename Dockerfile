@@ -1,14 +1,14 @@
 # syntax = docker/dockerfile:1.2
-FROM clojure:openjdk-17 AS build
+FROM clojure:tools-deps-1.11.1.1149 AS build
 
-WORKDIR /
-COPY . /
+WORKDIR /guestbook/
+COPY . /guestbook/
 
 RUN clj -Sforce -T:build all
 
-FROM azul/zulu-openjdk-alpine:17
+FROM azul/zulu-openjdk-alpine:18
 
-COPY --from=build /target/guestbook-standalone.jar /guestbook/guestbook-standalone.jar
+COPY --from=build /guestbook/target/guestbook-standalone.jar /guestbook/guestbook-standalone.jar
 
 EXPOSE $PORT
 
