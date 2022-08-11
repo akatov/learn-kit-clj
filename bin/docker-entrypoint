@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+if [ -z $NGROK_AUTHTOKEN ]; then
+  echo "please provide NGROK_AUTHTOKEN env variable"
+  exit 1
+fi
+
+if [ -z $NGROK_REMOTE_ADDR ]; then
+  echo "please provide NGROK_REMOTE_ADDR env variable"
+  exit 1
+fi
+
+ngrok authtoken $NGROK_AUTHTOKEN
+
+ngrok tcp --region=eu --remote-addr=$NGROK_REMOTE_ADDR 7001 >/dev/null 2>&1 &
+
+exec java $JAVA_OPTS -jar /guestbook/guestbook-standalone.jar
