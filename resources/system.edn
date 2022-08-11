@@ -1,5 +1,4 @@
-{
- :system/env
+{:system/env
  #profile {:dev :dev
            :test :test
            :prod :prod}
@@ -46,5 +45,9 @@
  :router/core
  {:routes #ig/ref :router/routes}
 
- :nrepl/server {:port #long #or [#env NREPL_PORT 7001],
-                :bind #or [#env NREPL_HOST "127.0.0.1"]}}
+ :nrepl/server
+ {:socket #or [#env NREPL_SOCKET "./nrepl-socket"]}
+ ;; #profile {:dev {:port #long #or [#env NREPL_PORT 7001],
+ ;;                 :bind #or [#env NREPL_HOST "127.0.0.1"]}
+ ;;           :prod {:socket #or [#env NREPL_SOCKET "/guestbook/nrepl-socket"]}}
+ }
