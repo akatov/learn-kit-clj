@@ -41,6 +41,5 @@ COPY --from=build /guestbook/target/guestbook-standalone.jar /guestbook/guestboo
 COPY --from=build /guestbook/bin/docker-entrypoint /guestbook/docker-entrypoint
 
 EXPOSE $PORT
-EXPOSE 22
 
 CMD /guestbook/docker-entrypoint
