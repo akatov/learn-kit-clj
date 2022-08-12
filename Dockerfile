@@ -8,9 +8,11 @@ RUN tar -zxf ngrok-stable-linux-amd64.tgz
 FROM clojure:tools-deps-1.11.1.1149 AS build
 
 WORKDIR /guestbook/
-COPY . /guestbook/
+COPY ./deps.edn /guestbook/
+RUN clojure -P
 
-RUN clj -Sforce -T:build all
+COPY . /guestbook/
+RUN clojure -T:build all
 
 FROM azul/zulu-openjdk-alpine:18
 
