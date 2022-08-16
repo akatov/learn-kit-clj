@@ -10,16 +10,13 @@ if [ -z $NGROK_REMOTE_ADDR ]; then
   exit 1
 fi
 
-rc-update add sshd
-
-rc-status
-
-touch /run/openrc/softlevel
-
-rc-service sshd start
-
-ngrok authtoken $NGROK_AUTHTOKEN
-
-ngrok tcp --region=eu --remote-addr=$NGROK_REMOTE_ADDR 22 >/dev/null 2>&1 &
+if [ -n $ENABLE_NGROK ]; then
+  rc-update add sshd
+  rc-status
+  touch /run/openrc/softlevel
+  rc-service sshd start
+  ngrok authtoken $NGROK_AUTHTOKEN
+  ngrok tcp --region=eu --remote-addr=$NGROK_REMOTE_ADDR 22 >/dev/null 2>&1 &
+fi
 
 exec java $JAVA_OPTS -jar /guestbook/guestbook-standalone.jar
